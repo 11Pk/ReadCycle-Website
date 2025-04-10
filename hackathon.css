@@ -64,7 +64,7 @@
 .quote{
     /* padding-top: 270px; */
     padding-bottom: 0px;
-    padding-top: 70px;
+    padding-top: 90px;
     text-align: center;
     color:white ;
     line-height: 100px;
@@ -74,13 +74,22 @@
     margin-top: 0px;
 /* /* font-family: ; */
 } 
+.quote1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color:white ;
+    font-size: 70px;
+    font-weight: bold;
+    line-height: 100px;
+}
 
 #navbar{
     color: black;
 background-color: #1B56FD;
 }
-
-
+#mynavbar{
+    background-color: #E9DFC3;
+}
 .about{
     color: black;
     text-align: left;
@@ -133,7 +142,7 @@ background-color: #1B56FD;
     background-repeat: no-repeat;
 padding-left: 500px;
     height: 600px; 
-    padding-top: 180px;
+    padding-top: 150px;
 
     width: 1200px;
 
@@ -153,25 +162,25 @@ padding-left: 500px;
    
 }
 .myButton {
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-	background-color:#79bbff;
+	box-shadow:inset 0px 1px 0px 0px #EAD196;
+	background:linear-gradient(to bottom, #EAD196 5%, #EAD196 100%);
+	background-color:#EAD196;
 	border-radius:6px;
-	border:1px solid #84bbf3;
+	border:1px solid #EAD196;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+	color:black;
 	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;
 	padding:8px 14px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
+	text-shadow:0px 1px 0px #EAD196;
     margin: 10px;
 }
 .myButton:hover {
-	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
-	background-color:#378de5;
+	background:linear-gradient(to bottom, #DDA853 5%, #DDA853 100%);
+	background-color:#DDA853;
 }
 .myButton:active {
 	position:relative;
