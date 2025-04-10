@@ -13,7 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database(); 
     const auth = firebase.auth();
+let signin=document.querySelector(".sign-in")
+signin.addEventListener("click",()=>{
+    let signinpage=document.querySelector("mainbox")
+    signinpage.setAttribute("style","display:block")
 
+})
     function signUp(email, password, fullname) {
         auth
           .createUserWithEmailAndPassword(email, password)
