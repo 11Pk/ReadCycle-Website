@@ -108,6 +108,11 @@ background-color: #1B56FD;
 }
 #mynavbar{
     background-color: #E9DFC3;
+    position: fixed;
+    width: 100%;
+}
+.navbar-nav{
+    margin-right: 600px;
 }
 .about{
     color: black;
@@ -203,4 +208,13 @@ padding-left: 500px;
 }
 .myButton:active {
 	position:relative;
+}
+.profile{
+    width: 200px;    
+    border: solid;
+
+}
+.points{
+    border: solid;
+    width: 200px;    
 }
