@@ -95,7 +95,7 @@
 .quote{
     /* padding-top: 270px; */
     padding-bottom: 0px;
-    padding-top: 90px;
+    padding-top: 15px;
     text-align: center;
     color:white ;
     line-height: 100px;
@@ -120,7 +120,7 @@ background-color: #1B56FD;
 }
 #mynavbar{
     background-color: #E9DFC3;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
 }
 .navbar-nav{
@@ -167,6 +167,7 @@ background-color: #1B56FD;
 .homepageimagess{
     /* border: solid; */
     position: relative;
+    bottom: 50px;
     margin:0px auto 0px auto;
     margin-top:0px;
     padding-left: 150px;
@@ -176,10 +177,9 @@ background-color: #1B56FD;
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat;
-padding-left: 500px;
+    padding-left: 500px;
     height: 600px; 
-    padding-top: 150px;
-
+    padding-top: 180px;
     width: 1200px;
 
 }
@@ -249,3 +249,42 @@ padding-left: 500px;
     border: solid;
     width: 200px;
 }
+.profile{    font-family: Arial, sans-serif; /* Example font family */
+    font-size: 16px; /* Adjust size as needed */
+    font-weight: 500; /* Normal weight, you can set to bold for bolder text */
+    line-height: 1.5; /* Adjust line height if needed */
+    color: #333; /* Set text color */
+}
+
+.profile {
+    font-family: 'Roboto', sans-serif; /* Example for brand text */
+    font-size: 20px; /* Larger font for brand */
+    font-weight: 700; /* Bold weight for the brand */
+    color: #007bff; /* Brand color */
+}
+.myButton1 {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton1:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+        
