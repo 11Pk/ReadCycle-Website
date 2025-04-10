@@ -13,12 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database(); 
     const auth = firebase.auth();
+
+    let main=document.querySelector(".main")
+    main.addEventListener("click",()=>{
+        location.href="#mainpage"
+    })
+    
 let signin=document.querySelector(".sign-in")
 signin.addEventListener("click",()=>{
-    let signinpage=document.querySelector("mainbox")
+    let signinpage=document.querySelector(".mainbox")
     signinpage.setAttribute("style","display:block")
+    
 
-})
+    let signupform = signinpage.querySelector(".signinform");
+  
     function signUp(email, password, fullname) {
         auth
           .createUserWithEmailAndPassword(email, password)
@@ -46,6 +54,20 @@ signin.addEventListener("click",()=>{
       }
 
 
+    signupform.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let email = document.querySelector(".signup2").value;
+      let fullname = document.querySelector(".signup").value;
+      let password = document.querySelector(".signup1").value;
+     
+      signUp(email, password, fullname);
+    });
+  
+
+})
+    
+
+
     let giveform = document.querySelector(".giveform");
     console.log(giveform)
   giveform.addEventListener("submit",async function (event) {
@@ -71,16 +93,16 @@ signin.addEventListener("click",()=>{
           throw new Error("No coordinates found for this address.");
         }
       }
-    let book = giveform.querySelector(".input-group.book");
+    let book = giveform.querySelector("input.book");
     let bookname = book.value;
-    let address=giveform.querySelector(".input-group.location")
+    let address=giveform.querySelector("input.location")
     db.ref("donate")
       .push({
         name: bookname,
         username: user.uid,
-        location:address,
-        lat:await getCoordinates(address.value).lat,
-        long:await getCoordinates(address.value).long
+        location:address.value,
+        // lat:await getCoordinates(address.value).lat,
+        // long:await getCoordinates(address.value).long
 
       })
       .then(() => {
