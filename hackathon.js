@@ -24,7 +24,10 @@ let signin=document.querySelector(".sign-in")
 signin.addEventListener("click",()=>{
     let signinpage=document.querySelector(".mainbox")
     signinpage.setAttribute("style","display:block")
+
     
+    document.querySelector(".buttons").setAttribute("style","visibility:hidden")
+    document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
     let signupform = signinpage.querySelector(".signinform");
   
@@ -33,7 +36,7 @@ signin.addEventListener("click",()=>{
           .createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
             const user = userCredential.user;
-    
+            
             db.ref("users")
               .set({
                 username: user.uid,
@@ -48,6 +51,9 @@ signin.addEventListener("click",()=>{
               });
             console.log("User:", user);
             signupform.reset();
+            signinpage.setAttribute("style","display:none")
+            document.querySelector(".buttons").setAttribute("style","visibility:visible")
+    document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
           })
           .catch((error) => {
             alert(error.message);
@@ -66,10 +72,32 @@ signin.addEventListener("click",()=>{
   
 
 })
-// let offer=document.querySelector("offer");
-// button.addEventListener("click", function() {
-//   window.location.href = ".html";  
 
+const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb9"
+    
+    async function getCoordinates(address) {
+        
+        
+      
+        const response = await fetch(`https://api.radar.io/v1/geocode/forward?query=${encodeURIComponent(address)}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': RADAR_PUBLISHABLE_KEY,
+            }
+          });
+        const data = await response.json();
+        const output = document.getElementById('output')
+      
+        if (response.ok && data.addresses.length > 0)  {
+          const location = data.addresses[0]
+          return {
+            lat: location.latitude,
+            lon: location.longitude,
+          };
+        } else {
+          throw new Error(`No coordinates found for this address. Status: ${data.status}`);
+        }
+      }
     
 
 
@@ -85,20 +113,7 @@ signin.addEventListener("click",()=>{
 
       return;
     }
-const apikey="AIzaSyAgW8vHftszFHV6vmt1tAd4jS131mbw5KY"
-    async function getCoordinates(address) {
-        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apikey}`)
-        const data = await response.json();
-        if (data.status=="OK" && data.results.length > 0) {
-            const location = data.results[0].geometry.location;
-          return {
-            lat: location.lat,
-            lon: location.lon,
-          };
-        } else {
-          throw new Error("No coordinates found for this address.");
-        }
-      }
+
     let book = giveform.querySelector("input.book");
     let bookname = book.value;
     let address=giveform.querySelector("input.location")
@@ -124,7 +139,7 @@ const apikey="AIzaSyAgW8vHftszFHV6vmt1tAd4jS131mbw5KY"
 
   let takeform = document.querySelector(".takeform");
 
-  takeform.addEventListener("submit", function (event) {
+  takeform.addEventListener("submit", async function (event) {
     event.preventDefault();
     const user = firebase.auth().currentUser;
     if (!user) {
@@ -134,13 +149,14 @@ const apikey="AIzaSyAgW8vHftszFHV6vmt1tAd4jS131mbw5KY"
     let book = takeform.querySelector(".input-group.book");
     let bookname = book.value;
     let address=takeform.querySelector(".input-group.location")
+    let a= await getCoordinates(address.value)
     db.ref("take")
       .push({
         name: bookname,
         username: user.uid,
         location:address,
-        lat:getCoordinates().lat,
-        long:getCoordinates().long
+        lat:a.lat,
+        long:a.long
       })
       .then(() => {
         alert("We'll get back to you once we find a suitable donor.");
@@ -151,6 +167,8 @@ const apikey="AIzaSyAgW8vHftszFHV6vmt1tAd4jS131mbw5KY"
         alert("Sorry we coudn't load your request at the moment.");
       });
   });
+
+
   const resultsgive = [];
   const resultstake = [];
   const giveref = db.ref("donate");
