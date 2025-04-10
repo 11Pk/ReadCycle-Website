@@ -16,3 +16,24 @@
     height:1000px;
     width:100%;
 }
+.quote{
+    padding-top: 500px;
+    text-align: center;
+    color:white ;
+    line-height: 2px;
+    font-style: oblique;
+    font-size: 70px;
+    font-weight: bold;
+}
+.about{
+    color: black;
+    text-align: left;
+    /* font-style: oblique; */
+    font-size: 70px;
+    padding-top: 140px;
+    padding-left: 140px;
+
+}
+.aboutimage{
+    width: 25%;
+}
