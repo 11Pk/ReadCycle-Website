@@ -10,11 +10,34 @@
     height:1000px;
     width:100%;
 }
-#mainpage{
+
+#give{
     display:block;
+    background-color: #AFDDFF;
+    width:40%;
+    height:900px;
+    padding:10px;
+    font-size: 50px;
+    margin:10px;
+    
+}
+#take{
+    display:block;
+    font-size: 50px;
+    background-color: #AFDDFF;
+    width:40%;
+    height:900px;
+    padding:10px;
+    margin:10px;
+}
+#mainpage{
+    display:flex;
     background-color: #1B56FD;
     height:1000px;
     width:100%;
+    align-items: center;
+    justify-content: center;
+    
 }
 .quote{
     padding-top: 500px;
