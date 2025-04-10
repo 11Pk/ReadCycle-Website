@@ -35,5 +35,20 @@
 
 }
 .aboutimage{
-    width: 25%;
+    width: 43%;
+    float: left;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+.aboutblock{
+    /* border: solid; */
+    height: 450px;
+    padding: 20px;
+    padding-top: 40px;
+    /* background-color: white; */
+}
+.aboutpara{
+    line-height: 50px;
+    font-size: 200%;
+    font-weight: bold
 }
