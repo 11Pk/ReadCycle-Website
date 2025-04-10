@@ -40,14 +40,21 @@
     
 }
 .quote{
-    padding-top: 500px;
+    padding-top: 250px;
     text-align: center;
     color:white ;
-    line-height: 2px;
+    line-height: 100px;
     font-style: oblique;
     font-size: 70px;
     font-weight: bold;
 }
+
+#navbar{
+    color: black;
+background-color: #1B56FD;
+background-color:#1B56FDs;}
+
+
 .about{
     color: black;
     text-align: left;
@@ -59,6 +66,7 @@
 }
 .aboutimage{
     width: 43%;
+    height: 93%;
     float: left;
     margin-right: 20px;
     border-radius: 20px;
@@ -74,4 +82,33 @@
     line-height: 50px;
     font-size: 200%;
     font-weight: bold
+}
+.homeimg{
+    width: 20%; border-radius: 10px;
+
+}
+.homepageimagess{
+    border: solid;
+    margin:100px;
+    margin-top:100px;
+  margin-left: 500px;
+    /* margin-top:200px; */
+    /* padding: 40px; */
+    padding-left: 150px;
+    padding-top: 0px;
+    padding-right: 150px;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/012/243/160/original/open-book-icon-cartoon-png.png);
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 600px;
+    width: 600px;
+
+}
+.homeimg2{
+    width: 20%;
+    margin-left: 250px;
+    border-radius: 10px;
+
 }
