@@ -1,3 +1,48 @@
+
+   .sign{
+    color: white;
+    background-color: #211C84;
+    padding-left: 50px;
+    border: none;
+    /* padding-right: 40px; */
+    width: 230px;
+    border-radius: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+   }
+   .sign:hover{
+         cursor: pointer;
+         background-color: #4D55CC;
+   }
+   .sign:active{
+         background-color:#003092;}
+   .signup,.signup1,.signup2{
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-color: rgb(127, 116, 116,0.25);
+    width: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+   }
+   .signup2{
+    width: 210px;
+   }
+   .mainbox{
+    /* margin-left: 500px;
+    margin-right: 600px;
+    margin-top: 180px; */
+    border: solid;
+/* padding: 100px;
+padding-top: 100px; */
+width: 300px;   
+height: 250px; 
+position:relative;
+left:650px; 
+display:none }
+
+
 #homepage{
     display:block;
     background-color: #BF3131;
