@@ -65,6 +65,10 @@ signin.addEventListener("click",()=>{
   
 
 })
+// let offer=document.querySelector("offer");
+// button.addEventListener("click", function() {
+//   window.location.href = ".html";  
+
     
 
 

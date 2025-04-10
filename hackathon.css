@@ -336,3 +336,8 @@ background-color: #1B56FD;
     width: 100px;
     height: 100px;
 }
+#footer{
+    height: 250px;
+    background-color: white;
+    padding-left: 550px;
+}
