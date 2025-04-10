@@ -30,7 +30,17 @@ signin.addEventListener("click",()=>{
     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
     let signupform = signinpage.querySelector(".signinform");
-  
+    let signout=document.querySelector("sign-out")
+    signout.addEventListener("click",()=>{
+        firebase.auth().signOut()
+  .then(() => {
+    console.log("User signed out successfully.");
+    
+  })
+  .catch((error) => {
+    console.error("Error signing out:", error.message);
+  });
+    })
     function signUp(email, password, fullname) {
         auth
           .createUserWithEmailAndPassword(email, password)
@@ -102,8 +112,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
 
 
     let giveform = document.querySelector(".giveform");
-    console.log(giveform)
-  giveform.addEventListener("submit",async function (event) {
+     giveform.addEventListener("submit",async function (event) {
     event.preventDefault();
     
     const user = auth.currentUser;
@@ -146,17 +155,17 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
       alert("Please fill the sign-in form.");
       return;
     }
-    let book = takeform.querySelector(".input-group.book");
+    let book = takeform.querySelector("input.book");
     let bookname = book.value;
-    let address=takeform.querySelector(".input-group.location")
+    let address=takeform.querySelector("input.location")
     let a= await getCoordinates(address.value)
     db.ref("take")
       .push({
         name: bookname,
         username: user.uid,
-        location:address,
+        location:address.value,
         lat:a.lat,
-        long:a.long
+        long:a.lon
       })
       .then(() => {
         alert("We'll get back to you once we find a suitable donor.");
@@ -169,8 +178,8 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
   });
 
 
-  const resultsgive = [];
-  const resultstake = [];
+  let resultsgive = [];
+  let resultstake = [];
   const giveref = db.ref("donate");
   const takeref = db.ref("take");
 
@@ -189,6 +198,8 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
     return R * c; 
   }
   takeref.on("child_added", (snapshot) => {
+    let resultsgive = [];
+  let resultstake = [];
     const takedata = snapshot.val();
     if (!takedata || !takedata.name) return;
     giveref.once("value").then((snapshot) => {
@@ -196,19 +207,23 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
       if (!givedata) return;
       for (let key in givedata) {
         if (givedata[key].name === takedata.name) {
+        // console.log(givedata[key])
+        // console.log(takedata)
           resultsgive.push(givedata[key]);
           resultstake.push(takedata);
         }
       }
+      console.log(resultsgive)
+     console.log(resultstake)
       if(resultsgive.length>1)
       {
       let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].long,resultstake[0].lat)
       let min_index=0
       for (let i=1;i<resultsgive.length;i++)
       {
-        if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)<min_dist)
+        if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)<min_dist)
         {
-          min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)
+          min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)
           min_index=i
         }
       }
@@ -217,6 +232,8 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
     });
   });
   giveref.on("child_added", (snapshot) => {
+    let resultsgive = [];
+   let resultstake = [];
     const givedata = snapshot.val();
     if (!givedata || !givedata.name) return;
     takeref.once("value").then((snapshot) => {
@@ -227,13 +244,15 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
           resultsgive.push(givedata);
           resultstake.push(takedata[key]);
         }
+        // console.log(resultsgive)
+        // console.log(resultstake)
         if(resultsgive.length>1)
           {
-          let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].long,resultstake[0].lat)
+          let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
           let min_index=0
           for (let i=1;i<resultsgive.length;i++)
           {
-            if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)<min_dist)
+            if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)<min_dist)
             {
               min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)
               min_index=i
@@ -241,7 +260,39 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
           }
         }
       }
+    })
       
     });
-  });
+  
+  for(let j=0;j<resultsgive.length();j++)
+  {
+  db.ref(`notifications/${resultsgive[j].uid}`).push(
+    {
+        message: `Yeah, we found a suitable recipent for you:`,
+        type: 'donation_match',
+        // timestamp: Date.now()
+        
+      }
+  )
+  db.ref(`notifications/${resultstake[j].uid}`).push(
+    {
+        message: `Yeah, we found a suitable donor for you:`,
+        type: 'donation_match',
+        // timestamp: Date.now()
+      }
+  )
+}
+
+function listenForMessages(uid) {
+    firebase.database().ref(`notifications/${uid}`).on("child_added", (snapshot) => {
+      const data = snapshot.val();
+      console.log("New message:", data.message);
+      alert(data.message);})
+    }
 })
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      listenForMessages(user.uid);
+    }
+  });
