@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     main.addEventListener("click",()=>{
         location.href="#mainpage"
     })
-    
+
+
 let signin=document.querySelector(".sign-in")
 signin.addEventListener("click",()=>{
     let signinpage=document.querySelector(".mainbox")
@@ -84,14 +85,15 @@ signin.addEventListener("click",()=>{
 
       return;
     }
-
+const apikey="AIzaSyAgW8vHftszFHV6vmt1tAd4jS131mbw5KY"
     async function getCoordinates(address) {
-        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apikey}`)
         const data = await response.json();
-        if (data.length > 0) {
+        if (data.status=="OK" && data.results.length > 0) {
+            const location = data.results[0].geometry.location;
           return {
-            lat: parseFloat(data[0].lat),
-            lon: parseFloat(data[0].lon),
+            lat: location.lat,
+            lon: location.lon,
           };
         } else {
           throw new Error("No coordinates found for this address.");
@@ -100,13 +102,14 @@ signin.addEventListener("click",()=>{
     let book = giveform.querySelector("input.book");
     let bookname = book.value;
     let address=giveform.querySelector("input.location")
+    let a=await getCoordinates(address.value)
     db.ref("donate")
       .push({
         name: bookname,
         username: user.uid,
         location:address.value,
-        // lat:await getCoordinates(address.value).lat,
-        // long:await getCoordinates(address.value).long
+         lat:a.lat,
+         long:a.lon
 
       })
       .then(() => {
