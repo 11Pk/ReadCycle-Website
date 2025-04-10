@@ -30,17 +30,18 @@
     width: 210px;
    }
    .mainbox{
-    /* margin-left: 500px;
+    /* /* margin-left: 500px; */
     margin-right: 600px;
-    margin-top: 180px; */
+    margin-top: 180px; 
     border: solid;
 /* padding: 100px;
 padding-top: 100px; */
-width: 300px;   
-height: 250px; 
-position:relative;
+width: 400px;   
+height: 350px; 
+/* position:relative; */
 left:650px; 
-display:none }
+display:none;
+ }
 
 
 #homepage{
@@ -80,7 +81,7 @@ display:none }
     position:relative;
     bottom:0px;
     color:#EAD196;
-    font-size:25px;
+    font-size:40px;
     width: 60%;
     font-weight: bold;
 }
@@ -129,7 +130,7 @@ display:none }
 }
 #mainpage{
     display:inline-block;
-    background: linear-gradient(70deg, #BF3131 60%,#EAD196 60%);
+    background: linear-gradient(90deg, #BF3131 60%,#EAD196 60%);
     height:1000px;
     width:100%;
     align-items: center;
@@ -257,7 +258,7 @@ background-color: #1B56FD;
 	padding:8px 14px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #EAD196;
-    margin: 10px;
+    margin: 15px;
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, #DDA853 5%, #DDA853 100%);
@@ -266,7 +267,7 @@ background-color: #1B56FD;
 .myButton:active {
 	position:relative;
 }
-.profile{
+/* .profile{
     width: 200px;    
     border: solid;
     margin: 0;
@@ -279,10 +280,10 @@ background-color: #1B56FD;
     background-color: var(--bs-body-bg);
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-}
+} */
 
 
-.points{
+/* .points{
     border: solid;
     width: 200px;
 }
@@ -293,20 +294,10 @@ background-color: #1B56FD;
 .signout{
     border: solid;
     width: 200px;
-}
-.profile{    font-family: Arial, sans-serif; /* Example font family */
-    font-size: 16px; /* Adjust size as needed */
-    font-weight: 500; /* Normal weight, you can set to bold for bolder text */
-    line-height: 1.5; /* Adjust line height if needed */
-    color: #333; /* Set text color */
-}
+} */
 
-.profile {
-    font-family: 'Roboto', sans-serif; /* Example for brand text */
-    font-size: 20px; /* Larger font for brand */
-    font-weight: 700; /* Bold weight for the brand */
-    color: #007bff; /* Brand color */
-}
+
+/*  */
 .myButton1 {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
@@ -331,5 +322,8 @@ background-color: #1B56FD;
 	position:relative;
 	top:1px;
 }
-
-        
+.profilepic{
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+}
