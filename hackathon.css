@@ -1,13 +1,13 @@
 #homepage{
     display:block;
     background-color: #1B56FD;
-    height:800px;
+    height:650px;
     width:100%;
 }
 #about{
     display: block;
     background-color: #E9DFC3;
-    height:1000px;
+    height:800px;
     width:100%;
 }
 .categories{
@@ -48,8 +48,8 @@
 }
 .quote{
     /* padding-top: 270px; */
-    padding-bottom: 200px;
-    padding-top: 80px;
+    padding-bottom: 0px;
+    padding-top: 70px;
     text-align: center;
     color:white ;
     line-height: 100px;
@@ -57,12 +57,13 @@
     font-size: 70px;
     font-weight: bold;
     margin-top: 0px;
-}
+/* /* font-family: ; */
+} 
 
 #navbar{
     color: black;
 background-color: #1B56FD;
-background-color:#1B56FDs;}
+}
 
 
 .about{
@@ -98,7 +99,7 @@ background-color:#1B56FDs;}
     border-radius: 10px;
     margin-right: 40px;
     margin-left: -60px;
-    margin-top: 30px;
+    margin-top: 0px;
     
 
 
@@ -117,7 +118,7 @@ background-color:#1B56FDs;}
     background-repeat: no-repeat;
 padding-left: 500px;
     height: 600px; 
-    padding-top: 200px;
+    padding-top: 180px;
 
     width: 1200px;
 
@@ -130,4 +131,33 @@ padding-left: 500px;
     margin-top: 30px; 
       border-color: grey;
 
+}
+.buttons{
+    /* border: solid; */
+    margin-left: 600px;
+   
+}
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:8px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+    margin: 10px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+.myButton:active {
+	position:relative;
 }
