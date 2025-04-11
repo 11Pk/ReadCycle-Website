@@ -31,16 +31,16 @@ signin.addEventListener("click",()=>{
     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
     let signupform = signinpage.querySelector(".signinform");
-    let signout=document.querySelector(".sign-out")
-    signout.addEventListener("click",()=>{
-        firebase.auth().signOut()
-  .then(() => {
-    console.log("User signed out successfully.");
+  //   let signout=document.querySelector(".sign-out")
+  //   signout.addEventListener("click",()=>{
+  //       firebase.auth().signOut()
+  // .then(() => {
+  //   console.log("User signed out successfully.");
     
-  })
-  .catch((error) => {
-    console.error("Error signing out:", error.message);
-  });
+  // })
+  // .catch((error) => {
+  //   console.error("Error signing out:", error.message);
+  // });
     })
     function signUp(email, password, fullname) {
         auth
@@ -56,6 +56,8 @@ signin.addEventListener("click",()=>{
               })
               .then(() => {
                 alert("Signup successful!");
+                document.querySelector(".buttons").setAttribute("style","visibility:visible")
+    document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
               })
               .catch((error) => {
                 alert("Sry we faced an error.");
@@ -272,7 +274,7 @@ const givedata = givedataSnapshot.val();
     }
       
     });
-  });
+  
   giveref.on("child_added", (snapshot) => {
     let resultsgive = [];
    let resultstake = [];
