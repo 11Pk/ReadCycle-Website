@@ -64,6 +64,9 @@ display:none;
     height:800px;
     width:100%;
 }
+.match-results{
+    display:none;
+}
 .offer{
     position:relative;
     border-radius:10px;
