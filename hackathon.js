@@ -30,7 +30,7 @@ signin.addEventListener("click",()=>{
     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
     let signupform = signinpage.querySelector(".signinform");
-    let signout=document.querySelector("sign-out")
+    let signout=document.querySelector(".sign-out")
     signout.addEventListener("click",()=>{
         firebase.auth().signOut()
   .then(() => {
@@ -213,8 +213,11 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
           resultstake.push(takedata);
         }
       }
-      console.log(resultsgive)
-     console.log(resultstake)
+      for(let k=0;k<resultsgive.length;k++)
+        console.log(resultsgive[k].name)
+        console.log(resultsgive[k].username)
+        console.log(resultsgive[k].location)
+      
       if(resultsgive.length>1)
       {
       let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].long,resultstake[0].lat)
@@ -225,7 +228,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
         {
           min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)
           min_index=i
-        }
+        }ī
       }
     }
       
@@ -244,8 +247,10 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
           resultsgive.push(givedata);
           resultstake.push(takedata[key]);
         }
-        // console.log(resultsgive)
-        // console.log(resultstake)
+        for(let k=0;k<resultsgive.length;k++)
+        console.log(resultstake[k].name)
+        console.log(resultstake[k].username)
+        console.log(resultstake[k].location)
         if(resultsgive.length>1)
           {
           let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
@@ -264,7 +269,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
       
     });
   
-  for(let j=0;j<resultsgive.length();j++)
+  for(let j=0;j<resultsgive.length;j++)
   {
   db.ref(`notifications/${resultsgive[j].uid}`).push(
     {
@@ -289,6 +294,12 @@ function listenForMessages(uid) {
       console.log("New message:", data.message);
       alert(data.message);})
     }
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+          listenForMessages(user.uid);
+        }
+      });
+    
 })
 
 firebase.auth().onAuthStateChanged((user) => {
