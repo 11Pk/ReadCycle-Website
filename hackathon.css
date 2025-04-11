@@ -194,9 +194,10 @@ background-color: #1B56FD;
     color: black;
     text-align: left;
     /* font-style: oblique; */
-    font-size: 70px;
+    font-size: 60px;
     padding-top: 140px;
     padding-left: 140px;
+    font-family:  monospace;
 
 }
 .aboutimage{
@@ -214,9 +215,9 @@ background-color: #1B56FD;
     /* background-color: white; */
 }
 .aboutpara{
-    line-height: 50px;
-    font-size: 200%;
-    font-weight: bold
+    line-height: 30px;
+    font-size: 20px;
+    
 }
 .homeimg{
     width: 24%;
@@ -354,9 +355,106 @@ background-color: #1B56FD;
     font-size: 25px;
 
 }
-.flogo{
-    width: 2%;
+/* .flogo{
+    width: 6%;
     margin-bottom: 10px;
     margin-right: 100px;
     margin-top: 30px;
 }
+.flogo1{
+    width: 12%;
+    margin-bottom: 10px;
+    margin-right: 100px;
+    margin-top: 30px;
+} */
+
+
+\* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Footer styling */
+  footer {
+    background-color: white;
+    color: black;
+    padding: 30px 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    /* bottom: 20px; */
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .footer-left {
+    font-size: 14px;
+  }
+  
+  .footer-center ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-center ul li {
+    display: inline;
+  }
+  
+  .footer-center ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .footer-center ul li a:hover {
+    color: #1abc9c;
+  }
+  
+  .footer-right .social-icons {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-right .social-icons li {
+    display: inline;
+  }
+  
+  .footer-right .social-icons li a {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-right .social-icons li a:hover {
+    color: #1abc9c;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-center ul {
+      flex-direction: column;
+    }
+  
+    .footer-right .social-icons {
+      flex-direction: column;
+    }
+  }
+  

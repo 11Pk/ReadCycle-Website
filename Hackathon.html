@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReadCycle</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="hackathon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="">exchange books</a>
                     </li> -->
                     <li class="nav-item d-flex">
-                        <a class="nav-link" href="">Reviews</a>
+                        <a class="nav-link" href="#footer-container">Contact</a>
                     </li>
                    
                 </ul>
@@ -76,17 +76,23 @@
 
     </div>
     <div id="about">
-        <p class="about">About Us</p>
+        <p class="about"><u>About Us</u></p>
         <div class="aboutblock">
             <img class="aboutimage" src="http://www.clipartbest.com/cliparts/di7/j6R/di7j6RneT.jpeg" alt="">
-            <p class="aboutpara"><i>Our website is building thousands of connection between giver and taker. Each connection saving number of resources and proving to be great effort towards sustainable development.</i></p>
+            <p class="aboutpara">
+              <!-- <i>Our website is building thousands of connection between giver and taker. Each connection saving number of resources and proving to be great effort towards sustainable development.</i></p> -->
+              <strong>Mission</strong>
+              To create a vibrant and accessible community where book lovers can share, exchange, and discover new literary experiences, fostering a culture of reading, sustainability, and collaboration. We aim to make books available to everyone, promoting the idea that every book has a story to tell, and every reader deserves a chance to enjoy it.
+              <br> <br> <br>
+              <strong>Vision</strong>
+To be the leading global platform for book exchange, connecting readers across the world and making books more accessible to all. We envision a world where people are inspired to read more, share more, and engage with literature in a sustainable and community-driven way, breaking barriers to access and building a more literate and connected global community.
         </div>
     </div>
     <div id="mainpage">
     <div class="start"><p><centre>Choose you wanna offer or receive books</centre></p></div>
        <div id="give">
         <img class="profilepic" src="https://tse3.mm.bing.net/th?id=OIP.RsTKpHEz3Z2f4_Jg_1VFoAHaHa&pid=Api&P=0&h=180" style="border-radius:50%; position:relative;right:50px;" >
-        <button type="button" class="offer fs--1">Offer</button>
+        <button type="button" id="offer" class="offer fs--1">Offer</button>
             <br><br>
             <div class="box">
             <div class="categories">
@@ -162,7 +168,7 @@
        </div>
        <!-- <img src="https://tse2.mm.bing.net/th?id=OIP.uwZY76iXrHxAOBUCj66KMQHaEG&pid=Api&P=0&h=220 "style="height:200px ;width:200px ; background-color:#EEEEEE; position:relative; top:700px; right:600px"> -->
        <div id="take">
-        <button class="receive btn btn-danger btn-lg fs-2">Receive</button>
+        <button id="receive" class="receive btn btn-danger btn-lg fs-2">Receive</button>
         <img class="profilepic" src="https://tse3.mm.bing.net/th?id=OIP.RsTKpHEz3Z2f4_Jg_1VFoAHaHa&pid=Api&P=0&h=180" style="border-radius:50%;  position:relative; left:310px">
         <br><br>
             <div class="box2">
@@ -237,14 +243,14 @@
             </form>
         </div>
        </div>
-       <div id="footer">
+       <!-- <div id="footer">
        
            <footer>
             <p>STAY UPDATED and FOLLOW US ON
               <br>
               <a href="instagram.com" ><img src="https://chudomuzey.ru/wp-content/uploads/2020/09/instalogo-1024x1024.png" class="flogo" alt=""></a> 
                 <a href="facebook.com" ><img src="https://tse3.mm.bing.net/th?id=OIP.ECzNbQR_AZfAJQfBPXjMGgHaHa&pid=Api&P=0&h=180" class="flogo"alt=""></a> 
-                <a href="twitter.com" ><img src="https://logos-world.net/wp-content/uploads/2020/04/Twitter-Symbol.png" class="flogo" alt=""></a>
+                <a href="twitter.com" ><img src="https://logos-world.net/wp-content/uploads/2020/04/Twitter-Symbol.png" class="flogo1" alt=""></a>
             </p>
             <div>
                 <a href="privacy-policy.html">Privacy Policy</a>
@@ -252,7 +258,29 @@
                 <a href="contact.html">Contact</a>
             </div>
         </footer>
-       </div>
+       </div> -->
+
+       <footer>
+        <div id="footer-container" style="position: absolute;">
+        <div class="footer-container" style="position: absolute;">
+
+          <div class="footer-left">
+            <p>&copy; 2025 Company. All rights reserved.</p>
+          </div>
+          <div class="footer-center">
+            
+          </div>
+          <div class="footer-right">
+            <ul class="social-icons">
+              <li><a href="instagram.com" class="social-icon">Facebook</a></li>
+              <li><a href="twitter.com" class="social-icon">Twitter</a></li>
+              <li><a href="faccebook.com" class="social-icon">Facebook</a></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </footer>
+      
    
 
     </div>
