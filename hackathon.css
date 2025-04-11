@@ -32,22 +32,20 @@
    .mainbox{
     align-items: center;
     padding-right: 100px;
+    margin-top: 0px;
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 0px;
     margin-left: 400px;
     background-color: white;
-    /* 
-    margin-right: 600px;
-    /* margin-top: 100px;  */
     border: solid;
-/* padding: 100px;
- */
  padding-top: 50px;
-width: 700px;   
-height: 450px; 
-/* position:relative; */
-left:650px; 
+width: 800px;   
+height: 600px; 
+left:2px; 
+z-index: 1000;
+position: relative;
+bottom: 250px;
 display:none;
  }
 
@@ -286,6 +284,36 @@ background-color: #1B56FD;
 .myButton:active {
 	position:relative;
 }
+.myButton2 {
+	/* box-shadow:inset 0px 1px 0px 0px #EAD196; */
+	/* background:linear-gradient(to bottom, #EAD196 5%, #EAD196 100%); */
+	/* background-color:#EAD196; */
+	border-radius:6px;
+	/* border:1px solid #EAD196; */
+	display:inline-block;
+	cursor:pointer;
+    font-family: Arial, sans-serif; /* Font style */
+    font-size: 24px;
+	color:gray;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:8px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #EAD196;
+    margin: 15px;
+    background-color: #E9DFC3;
+    font-family: monospace;
+    border: none;
+}
+.myButton:hover2 {
+	background:linear-gradient(to bottom, #DDA853 5%, #DDA853 100%);
+	background-color:#DDA853;
+    background-color: #E9DFC3;
+}
+.myButton:active2 {
+	position:relative;
+}
 
 /* .profile{
     width: 200px;    
@@ -315,9 +343,17 @@ background-color: #1B56FD;
     border: solid;
     width: 200px;
 } */
+.close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
 
 
-/*  */
+.social-icons{
+    margin-left: 800px;
+}
 .myButton1 {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
@@ -398,6 +434,8 @@ background-color: #1B56FD;
   
   .footer-left {
     font-size: 14px;
+   height: 15px;
+   width: 150px;
   }
   
   .footer-center ul {

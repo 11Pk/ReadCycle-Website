@@ -264,32 +264,35 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
     });
   });
 })
-let button = document.querySelector("#offer");
+// let button = document.querySelector("#offer");
 
-button.onclick = function () {
-  let take = document.getElementById("take");
+// button.onclick = function () {
+//   let take = document.getElementById("take");
 
-  take.innerHTML = ""; // Clear old content
+//   take.innerHTML = ""; // Clear old content
 
-  let newDiv = document.createElement("div");
-  newDiv.innerHTML = "<p>This</p>";
-  newDiv.style.border = "2px solid black";
-  newDiv.style.marginTop = "10px";
+//   let newDiv = document.createElement("div");
+//   newDiv.innerHTML = "<p>This</p>";
+//   newDiv.style.border = "2px solid black";
+//   newDiv.style.marginTop = "10px";
 
-  take.appendChild(newDiv); // Insert new content inside #take
-};
+//   take.appendChild(newDiv); // Insert new content inside #take
+// };
 
-let button1 = document.querySelector("#receive");
+// let button1 = document.querySelector("#receive");
 
-button1.onclick = function () {
-  let take = document.getElementById("give");
+// button1.onclick = function () {
+//   let take = document.getElementById("give");
 
-  take.innerHTML = ""; // Clear old content
+//   take.innerHTML = ""; // Clear old content
 
-  let newDiv1 = document.createElement("div");
-  newDiv1.innerHTML = "<p>This</p>";
-  newDiv1.style.border = "2px solid black";
-  newDiv1.style.marginTop = "10px";
+//   let newDiv1 = document.createElement("div");
+//   newDiv1.innerHTML = "<p>This</p>";
+//   newDiv1.style.border = "2px solid black";
+//   newDiv1.style.marginTop = "10px";
 
-  take.appendChild(newDiv1); // Insert new content inside #take
-};
+//   take.appendChild(newDiv1); // Insert new content inside #take
+// };
+// document.querySelector('.close-btn').onclick = function () {
+//   document.getElementById('signinModal').style.display = 'none';
+// };
