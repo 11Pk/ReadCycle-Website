@@ -248,7 +248,7 @@ const givedata = givedataSnapshot.val();
         {
           min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)
           min_index=i
-        }ī
+        }
       }
       const matchedDonor = resultsgive[min_index];
             const matchedReceiver = resultstake[0];
