@@ -296,8 +296,12 @@ firebase.auth().onAuthStateChanged((user) => {
       listenForMessages(user.uid);
     }
   });
+<<<<<<< Updated upstream
 
 
+=======
+})
+>>>>>>> Stashed changes
 
 
 
