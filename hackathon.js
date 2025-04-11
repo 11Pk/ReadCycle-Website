@@ -30,18 +30,10 @@ signin.addEventListener("click",()=>{
     document.querySelector(".buttons").setAttribute("style","visibility:hidden")
     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
-    let signupform = signinpage.querySelector(".signinform");
-  //   let signout=document.querySelector(".sign-out")
-  //   signout.addEventListener("click",()=>{
-  //       firebase.auth().signOut()
-  // .then(() => {
-  //   console.log("User signed out successfully.");
     
-  // })
-  // .catch((error) => {
-  //   console.error("Error signing out:", error.message);
-  // });
-    })
+  
+    
+    let signupform = signinpage.querySelector(".signinform");
     function signUp(email, password, fullname) {
         auth
           .createUserWithEmailAndPassword(email, password)
@@ -62,7 +54,7 @@ signin.addEventListener("click",()=>{
               .catch((error) => {
                 alert("Sry we faced an error.");
               });
-            console.log("User:", user);
+           
             signupform.reset();
             signinpage.setAttribute("style","display:none")
             document.querySelector(".buttons").setAttribute("style","visibility:visible")
@@ -72,7 +64,7 @@ signin.addEventListener("click",()=>{
             alert(error.message);
           });
       }
-
+    
 
     signupform.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -83,8 +75,8 @@ signin.addEventListener("click",()=>{
       signUp(email, password, fullname);
     });
   
+  })
 
-})
 
 const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb9"
     
@@ -361,4 +353,4 @@ firebase.auth().onAuthStateChanged((user) => {
     }
   });
 
-
+})
