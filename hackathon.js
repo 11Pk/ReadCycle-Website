@@ -264,6 +264,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
     });
   });
 })
+<<<<<<< Updated upstream
 // let button = document.querySelector("#offer");
 
 // button.onclick = function () {
@@ -296,3 +297,36 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
 // document.querySelector('.close-btn').onclick = function () {
 //   document.getElementById('signinModal').style.display = 'none';
 // };
+=======
+
+
+
+let button = document.querySelector("#offer");  
+
+button.onclick = function() {
+  let take = document.getElementById("take");  
+
+  take.innerHTML = "";
+
+  // Create the new content
+  let newDiv = document.createElement("div");
+  newDiv.innerHTML = "<p>This</p>";
+  newDiv.style.border = "2px solid black";
+  newDiv.style.marginTop = "10px";
+
+  take.style.visibility = "visible";
+
+  take.appendChild(newDiv);
+};
+
+
+
+let button1 = document.querySelector("#receive");  // Select the button with the ID "offer"
+
+button1.onclick = function() {
+  var div = document.getElementById("give");  // Select the div with the ID "take"
+  div.style.visibility = "hidden";
+  let newDiv1 = document.createElement("div");
+};
+
+>>>>>>> Stashed changes
