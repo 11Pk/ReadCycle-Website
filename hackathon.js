@@ -286,17 +286,9 @@ const givedata = givedataSnapshot.val();
           resultsgive.push(givedata);
           resultstake.push(takedata[key]);
         }
-<<<<<<< Updated upstream
-        // for(let k=0;k<resultsgive.length;k++)
-        // {console.log(resultstake[k].name)
-        // console.log(resultstake[k].username)
-        // console.log(resultstake[k].location)}
-        if(resultsgive.length>0)
-=======
         console.log(resultsgive)
         console.log(resultstake)
         if(resultsgive.length>1)
->>>>>>> Stashed changes
           {
           let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
           let min_index=0
@@ -325,23 +317,15 @@ const givedata = givedataSnapshot.val();
       }
       
     });
+  })
   
-<<<<<<< Updated upstream
- 
-  // db.ref(`notifications/${resultsgive[0].uid}`).push(
+  // for(let j=0;j<resultsgive.length;j++)
+  // {
+  // db.ref(`notifications/${resultsgive[j].uid}`).push(
   //   {
   //       message: `Yeah, we found a suitable recipent for you:`,
   //       type: 'donation_match',
-  //       // timestamp: Date.now()
-=======
-  for(let j=0;j<resultsgive.length;j++)
-  {
-  db.ref(`notifications/${resultsgive[j].uid}`).push(
-    {
-        message: `Yeah, we found a suitable recipent for you:`,
-        type: 'donation_match',
-        // timestamp: Date.now()
->>>>>>> Stashed changes
+  //   }
         
   //     }
   // )
@@ -366,9 +350,8 @@ function listenForMessages(uid) {
         }
       });
     
-})
 
-<<<<<<< Updated upstream
+
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -377,5 +360,3 @@ firebase.auth().onAuthStateChanged((user) => {
   });
 
 
-=======
->>>>>>> Stashed changes
