@@ -260,76 +260,36 @@ const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb
           }
         }
       }
-    })
       
     });
-  
-  for(let j=0;j<resultsgive.length();j++)
-  {
-  db.ref(`notifications/${resultsgive[j].uid}`).push(
-    {
-        message: `Yeah, we found a suitable recipent for you:`,
-        type: 'donation_match',
-        // timestamp: Date.now()
-        
-      }
-  )
-  db.ref(`notifications/${resultstake[j].uid}`).push(
-    {
-        message: `Yeah, we found a suitable donor for you:`,
-        type: 'donation_match',
-        // timestamp: Date.now()
-      }
-  )
-}
-
-function listenForMessages(uid) {
-    firebase.database().ref(`notifications/${uid}`).on("child_added", (snapshot) => {
-      const data = snapshot.val();
-      console.log("New message:", data.message);
-      alert(data.message);})
-    }
-})
-
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      listenForMessages(user.uid);
-    }
   });
-<<<<<<< Updated upstream
-
-
-=======
 })
->>>>>>> Stashed changes
+let button = document.querySelector("#offer");
 
+button.onclick = function () {
+  let take = document.getElementById("take");
 
+  take.innerHTML = ""; // Clear old content
 
-let button = document.querySelector("#offer");  
-
-button.onclick = function() {
-  let take = document.getElementById("take");  
-
-  take.innerHTML = "";
-
-  // Create the new content
   let newDiv = document.createElement("div");
   newDiv.innerHTML = "<p>This</p>";
   newDiv.style.border = "2px solid black";
   newDiv.style.marginTop = "10px";
 
-  take.style.visibility = "visible";
-
-  take.appendChild(newDiv);
+  take.appendChild(newDiv); // Insert new content inside #take
 };
 
+let button1 = document.querySelector("#receive");
 
+button1.onclick = function () {
+  let take = document.getElementById("give");
 
-let button1 = document.querySelector("#receive");  // Select the button with the ID "offer"
+  take.innerHTML = ""; // Clear old content
 
-button1.onclick = function() {
-  var div = document.getElementById("give");  // Select the div with the ID "take"
-  div.style.visibility = "hidden";
   let newDiv1 = document.createElement("div");
-};
+  newDiv1.innerHTML = "<p>This</p>";
+  newDiv1.style.border = "2px solid black";
+  newDiv1.style.marginTop = "10px";
 
+  take.appendChild(newDiv1); // Insert new content inside #take
+};
