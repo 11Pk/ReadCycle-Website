@@ -282,6 +282,8 @@ const givedata = givedataSnapshot.val();
         }
         console.log(resultsgive)
         console.log(resultstake)
+        console.log(resultsgive)
+        console.log(resultstake)
         if(resultsgive.length>1)
           {
           let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
