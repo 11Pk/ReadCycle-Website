@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadCycle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hackathon.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+
+    <div id="navbar">
+            <nav class="navbar navbar-expand-lg" id="mynavbar">
+                <a class="navbar-brand" href="#">ReadCycle</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#homepage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="">exchange books</a>
+                    </li> -->
+                    <li class="nav-item d-flex">
+                        <a class="nav-link" href="#footer-container">Contact</a>
+                    </li>
+                   
+                </ul>
+                <div ><button class="myButton2 profile">Profile</button></div>
+                <div> <button class="myButton2 sign-in">Signin</button></div>
+                <!-- <div> <button class="myButton sign-out">sign out</button></div> -->
+                <div><button class="myButton2 points">Points</button></div>
+                <!--  <a href="#" class="myButton">Profile</a>
+                <a href="#"< class="myButton">signin</a>
+                <a href="#" class="myButton">points</a> -->
+                </div>
+            </nav> 
+    </div>
+    <div id="homepage">
+        <p class="quote">Read.Return.Repeat.</p>
+            <br>
+            <p class="quote1">Let the stories live on.</p>
+            <div class="mainbox">
+                <form class="signinform">
+                  <span class="close-btn">&times;</span>
+                  <h1>Sign In to Your Account</h1>
+               <h6>Enter your Name </h6>
+                <input class="signup" type="text" placeholder="Full name">
+                <h6>Enter Password </h6>
+                <input class="signup1" type="password" placeholder="password">
+                <h6>Enter your E-mail </h6>
+                <input class="signup2" type="text" placeholder="Email">
+                <input class="sign" type="submit" placeholder="Sign Up">      
+                </form>
+            </div>
+            <div class="buttons">          
+                <a href="#mainpage"class="offer myButton main">OFFER BOOK</a>   
+                <a href="#mainpage" class="receive2 myButton main">RECEIVE BOOK</a>              
+            </div>
+            <div class="homepageimagess">
+                <!-- <p class="first">Finally done with these books</p> 
+                <p class="second">I got Damn good books</p>  -->
+                <img class="homeimg"src="download.png" alt="" style="background-color: #E9DFC3;">
+                <img src="download (1).png" alt="" class="homeimg2">
+            </div>
+
+
+    </div>
+    <div id="about">
+        <p class="about"><u>About Us</u></p>
+        <div class="aboutblock">
+            <img class="aboutimage" src="http://www.clipartbest.com/cliparts/di7/j6R/di7j6RneT.jpeg" alt="">
+            <p class="aboutpara">
+              <!-- <i>Our website is building thousands of connection between giver and taker. Each connection saving number of resources and proving to be great effort towards sustainable development.</i></p> -->
+              <strong>Mission</strong>
+              To create a vibrant and accessible community where book lovers can share, exchange, and discover new literary experiences, fostering a culture of reading, sustainability, and collaboration. We aim to make books available to everyone, promoting the idea that every book has a story to tell, and every reader deserves a chance to enjoy it.
+              <br> <br> <br>
+              <strong>Vision</strong>
+To be the leading global platform for book exchange, connecting readers across the world and making books more accessible to all. We envision a world where people are inspired to read more, share more, and engage with literature in a sustainable and community-driven way, breaking barriers to access and building a more literate and connected global community.
+        </div>
+    </div>
+    <div id="mainpage">
+    <div class="start"><p><centre>Choose you wanna offer or receive books</centre></p></div>
+       <div id="give">
+        <img class="profilepic" src="https://tse3.mm.bing.net/th?id=OIP.RsTKpHEz3Z2f4_Jg_1VFoAHaHa&pid=Api&P=0&h=180" style="border-radius:50%; position:relative;right:50px;" >
+        <button type="button" id="offer" class="offer fs--1">Offer</button>
+            <br><br>
+            <div class="box">
+            <div class="categories">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Boards
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#mainpage">CBSE</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">ICSE</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">State Boards</a></li>
+                 
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  College
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#mainpage">First Year</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Second Year</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Third Year</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Fourth Year</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Novel
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#mainpage">Fiction</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Thriller</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Romance</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">Others</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Competitive
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#mainpage">GATE</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">JEE</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">NEET</a></li>
+                  <li><a class="dropdown-item" href="#mainpage">CAT</a></li>
+                  
+                  
+                  <li><a class="dropdown-item" href="#mainpage">IILETS</a></li>
+                 
+                </ul>
+              </div>
+
+
+            </div>
+        
+            <br>
+            <br>
+            <form class="giveform">
+            <div class="input-group mb-3">
+                <span class="input-group-text " id="basic-addon1"><img src="https://tse1.mm.bing.net/th?id=OIP.hPinfBt3YajMOOMr5yBXawHaIV&pid=Api&P=0&h=220" style="height:20px; width:20px"></span>
+                <input type="text" class="form-control book" placeholder="Enter the bookname you want to offer." aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3 ">
+                <span class="input-group-text" id="basic-addon1"><img src="https://tse3.mm.bing.net/th?id=OIP.4dc-7moR0ySULX_-6SzigAHaKn&pid=Api&P=0&h=220" style="height:20px; width:20px"></span>
+                <input type="text" class="form-control location" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1" >
+              </div>
+              <br>
+              <div class="match-results g" style="text-align: center; padding: 20px;">
+                <h2>Match Found!</h2>
+                <p>Donor Name: <span id="donor-name">N/A</span></p>
+                <p>Donor Address: <span id="donor-address">N/A</span></p>
+                <p>Receiver Name: <span id="receiver-name">N/A</span></p>
+                <p>Receiver Address: <span id="receiver-address">N/A</span></p>
+            </div>
+              <button type="submit" class="btn btn-dark" style="background-color: white; color: black;">Submit Request</button>
+            </form>
+        </div>
+       </div>
+       <!-- <img src="https://tse2.mm.bing.net/th?id=OIP.uwZY76iXrHxAOBUCj66KMQHaEG&pid=Api&P=0&h=220 "style="height:200px ;width:200px ; background-color:#EEEEEE; position:relative; top:700px; right:600px"> -->
+       <div id="take">
+        <button id="receive" class="receive btn btn-danger btn-lg fs-2">Receive</button>
+        <img class="profilepic" src="https://tse3.mm.bing.net/th?id=OIP.RsTKpHEz3Z2f4_Jg_1VFoAHaHa&pid=Api&P=0&h=180" style="border-radius:50%;  position:relative; left:310px">
+        <br><br>
+            <div class="box2">
+            <div class="categories">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Boards
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">CBSE</a></li>
+                  <li><a class="dropdown-item" href="#">ICSE</a></li>
+                  <li><a class="dropdown-item" href="#">State Boards</a></li>
+                 
+                </ul>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  College
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">First Year</a></li>
+                  <li><a class="dropdown-item" href="#">Second Year</a></li>
+                  <li><a class="dropdown-item" href="#">Third Year</a></li>
+                  <li><a class="dropdown-item" href="#">Fourth Year</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Novel
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Fiction</a></li>
+                  <li><a class="dropdown-item" href="#">Thriller</a></li>
+                  <li><a class="dropdown-item" href="#">Romance</a></li>
+                  <li><a class="dropdown-item" href="#">Others</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Competitive
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">GATE</a></li>
+                  <li><a class="dropdown-item" href="#">JEE</a></li>
+                  <li><a class="dropdown-item" href="#">NEET</a></li>
+                  <li><a class="dropdown-item" href="#">CAT</a></li>
+                  <li><a class="dropdown-item" href="#">IILETS</a></li>
+                 
+                </ul>
+              </div>
+
+
+            </div>
+        
+            <br>
+            <br>
+            <form class="takeform">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><img src="https://tse1.mm.bing.net/th?id=OIP.hPinfBt3YajMOOMr5yBXawHaIV&pid=Api&P=0&h=220" style="height:20px; width:20px"></span>
+                <input type="text" class="form-control book" placeholder="Enter the bookname you want to offer." aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><img src="https://tse3.mm.bing.net/th?id=OIP.4dc-7moR0ySULX_-6SzigAHaKn&pid=Api&P=0&h=220" style="height:20px; width:20px"></span>
+                <input type="text" class="form-control location" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1" >
+              </div>
+              <br>
+              <div class="match-results t" style="text-align: center; padding: 20px;">
+                <h2>Match Found!</h2>
+                <p>Donor Name: <span id="donor-name">N/A</span></p>
+                <p>Donor Address: <span id="donor-address">N/A</span></p>
+                <p>Receiver Name: <span id="receiver-name">N/A</span></p>
+                <p>Receiver Address: <span id="receiver-address">N/A</span></p>
+            </div>
+              <button type="submit" class="btn btn-dark" style="background-color: white; color: black;">Submit Request</button>
+            </form>
+        </div>
+       </div>
+       <!-- <div id="footer">
+       
+           <footer>
+            <p>STAY UPDATED and FOLLOW US ON
+              <br>
+              <a href="instagram.com" ><img src="https://chudomuzey.ru/wp-content/uploads/2020/09/instalogo-1024x1024.png" class="flogo" alt=""></a> 
+                <a href="facebook.com" ><img src="https://tse3.mm.bing.net/th?id=OIP.ECzNbQR_AZfAJQfBPXjMGgHaHa&pid=Api&P=0&h=180" class="flogo"alt=""></a> 
+                <a href="twitter.com" ><img src="https://logos-world.net/wp-content/uploads/2020/04/Twitter-Symbol.png" class="flogo1" alt=""></a>
+            </p>
+            <div>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a> 
+                <a href="contact.html">Contact</a>
+            </div>
+        </footer>
+       </div> -->
+
+       <footer >
+        <div id="footer-container" style="position: absolute; ">
+        <div class="footer-container" style="position: absolute; ">
+
+          <div class="footer-left">
+            <p>&copy; 2025 Company.All rights reserved.</p>
+          </div>
+          <div class="footer-center">
+            
+          </div>
+          <div class="footer-right">
+            <ul class="social-icons">
+
+              <li><a href="instagram.com" class="social-icon">Instagram</a></li>
+              <li><a href="twitter.com" class="social-icon">Twitter</a></li>
+              <li><a href="faccebook.com" class="social-icon">Facebook</a></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </footer>
+      
+   
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="hackathon.js"></script>
+
+</body>
+</html>
