@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId
+  apiKey: "AIzaSyCTU8Zm0_S1eoi9FBDQwDisJRj5Gt0-3Mk",
+  authDomain: "user-70c1a.firebaseapp.com",
+  databaseURL: "https://user-70c1a-default-rtdb.firebaseio.com",
+  projectId: "user-70c1a",
+  storageBucket: "user-70c1a.firebasestorage.app",
+  messagingSenderId: "88960509724",
+  appId: "1:88960509724:web:308a0f970c01b0831f3cd9",
+  measurementId: "G-F3GH7DDRWV"
 };
   
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database(); 
     const auth = firebase.auth();
