@@ -80,7 +80,7 @@ signin.addEventListener("click",()=>{
   })
 
 
-const RADAR_PUBLISHABLE_KEY="prj_test_sk_4bf766367ba045738f24548671a09262d718dcb9"
+const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83e"
     
     async function getCoordinates(address) {
         
