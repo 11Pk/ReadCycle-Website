@@ -79,7 +79,7 @@ signin.addEventListener("click",()=>{
   
   })
 
-
+//use RADAR API to locate coordinates of the entered location
 const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83e"
     
     async function getCoordinates(address) {
@@ -107,7 +107,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
       }
     
 
-
+//if user enters data of the book he wants to donate.
     let giveform = document.querySelector(".giveform");
      giveform.addEventListener("submit",async function (event) {
     event.preventDefault();
@@ -115,7 +115,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
     const user = auth.currentUser;
     console.log(user)
     if (!user) {
-      alert("Please fill the sign-in form.");
+      alert("Please sign-in to exchange books.");
 
       return;
     }
@@ -136,6 +136,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
       .then(() => {
         alert("We'll get back to you once we find a suitable recipent.");
         giveform.reset();
+        
       })
 
       .catch((error) => {
@@ -179,7 +180,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
   let resultstake = [];
   
 
-
+//function to calculate distance between matched donors and receivers
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; 
     const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -210,15 +211,13 @@ function displayMatch(donor, receiver) {
   let resultstake = [];
     const takedata = snapshot.val();
     if (!takedata || !takedata.name) return;
-    // giveref.once("value").then((snapshot) => {
-      // const givedata = snapshot.val();
+
       const givedataSnapshot = await giveref.once("value");
 const givedata = givedataSnapshot.val();
       if (!givedata) return;
       for (let key in givedata) {
         if (givedata[key].name === takedata.name) {
-        // console.log(givedata[key])
-        // console.log(takedata)
+        
         const donorName = await getUserName(givedata[key].username);
                 resultsgive.push({
                     ...givedata[key],
@@ -231,14 +230,10 @@ const givedata = givedataSnapshot.val();
                     name: receiverName,
                     uid: takedata.username
                 })
-          // resultsgive.push(givedata[key]);
-          // resultstake.push(takedata);
+      
         }
       }
-      // for(let k=0;k<resultsgive.length;k++)
-      //   {console.log(resultsgive[k].name)
-      //   console.log(resultsgive[k].username)
-      //   console.log(resultsgive[k].location)}
+      
       
       if(resultsgive.length>0)
       {
@@ -265,16 +260,20 @@ const givedata = givedataSnapshot.val();
                 type: 'donation_match',
                 timestamp: Date.now()
             });
+            giveref.child(matchedDonor.uid).remove();
+            takeref.child(matchedReceiver.uid).remove();
     }
       
     });
   
-  giveref.on("child_added", (snapshot) => {
+
+  giveref.on("child_added", async (snapshot) => {
     let resultsgive = [];
    let resultstake = [];
     const givedata = snapshot.val();
     if (!givedata || !givedata.name) return;
-    takeref.once("value").then((snapshot) => {
+    const takedataSnapshot= await takeref.once("value");
+    
       const takedata = snapshot.val();
       if (!takedata) return;
       for (let key in takedata) {
@@ -282,11 +281,20 @@ const givedata = givedataSnapshot.val();
           resultsgive.push(givedata);
           resultstake.push(takedata[key]);
         }
-        console.log(resultsgive)
-        console.log(resultstake)
-        console.log(resultsgive)
-        console.log(resultstake)
-        if(resultsgive.length>1)
+        const donorName = await getUserName(givedata[key].username);
+                resultsgive.push({
+                    ...givedata[key],
+                    name: donorName,
+                    uid: givedata[key].username
+                })
+                const receiverName = await getUserName(takedata.username);
+                resultstake.push({
+                    ...takedata,
+                    name: receiverName,
+                    uid: takedata.username
+                })
+        
+        if(resultsgive.length>0)
           {
           let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
           let min_index=0
@@ -311,50 +319,28 @@ const givedata = givedataSnapshot.val();
                 type: 'donation_match',
                 timestamp: Date.now()
             });
+
         }
       }
-      
-    });
-  })
+
+    }
+  );
   
-  // for(let j=0;j<resultsgive.length;j++)
-  // {
-  // db.ref(`notifications/${resultsgive[j].uid}`).push(
-  //   {
-  //       message: `Yeah, we found a suitable recipent for you:`,
-  //       type: 'donation_match',
-  //   }
-        
-  //     }
-  // )
-  // db.ref(`notifications/${resultstake[0].uid}`).push(
-  //   {
-  //       message: `Yeah, we found a suitable donor for you:`,
-  //       type: 'donation_match',
-  //       // timestamp: Date.now()
-  //     }
-  // )
+  
 
 
 function listenForMessages(uid) {
     firebase.database().ref(`notifications/${uid}`).on("child_added", (snapshot) => {
       const data = snapshot.val();
-      console.log("New message:", data.message);
+      // console.log("New message:", data.message);
       alert(data.message);})
     }
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-          listenForMessages(user.uid);
-        }
-      });
-    
-
-
+  // Listen for authentication state changes
+  // and call listenForMessages when the user is signed in
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       listenForMessages(user.uid);
     }
   });
-
-})
+});
