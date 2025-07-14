@@ -42,7 +42,20 @@ firebase.initializeApp(firebaseConfig);
 
             });
         }
-    
+    function signin(email,password)
+    {
+auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    alert("You are signed-in");
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+}
 let signupform = document.querySelector(".signupform");
 signupform.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -54,4 +67,13 @@ signupform.addEventListener("submit", (event) => {
      
       signUp(email, password, fullname);
     });
+
+
+  let signinform=document.querySelector(".Sign-in")
+  signinform.addEventListener("click",(event)=>{
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
+    signin(email,password);
+
+  })
 });

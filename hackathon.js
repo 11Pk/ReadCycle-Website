@@ -23,67 +23,71 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
-let signin=document.querySelector(".sign-in")
-signin.addEventListener("click",()=>{
-    let signinpage=document.querySelector(".mainbox")
-    signinpage.setAttribute("style","display:block")
+// let signin=document.querySelector(".sign-in")
+// signin.addEventListener("click",()=>{
+//     let signinpage=document.querySelector(".mainbox")
+//     signinpage.setAttribute("style","display:block")
 
     
-    document.querySelector(".buttons").setAttribute("style","visibility:hidden")
-    document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
+//     document.querySelector(".buttons").setAttribute("style","visibility:hidden")
+//     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
 
     
   
     
-    let signupform = signinpage.querySelector(".signinform");
-    function signUp(email, password, fullname) {
-        auth
-          .createUserWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-          //   user.updateProfile({
-          //  displayName: fullname
-          //    }).then(() => {
-            db.ref(`users/${user.uid}`)
-              .set({
-                username: user.uid,
-                name: fullname,
-                email: email,
-              })
-              .then(() => {
-                alert("Signup successful!");
+  //   let signupform = signinpage.querySelector(".signinform");
+  //   function signUp(email, password, fullname) {
+  //       auth
+  //         .createUserWithEmailAndPassword(email, password)
+  //         .then((userCredential) => {
+  //           const user = userCredential.user;
+  //         //   user.updateProfile({
+  //         //  displayName: fullname
+  //         //    }).then(() => {
+  //           db.ref(`users/${user.uid}`)
+  //             .set({
+  //               username: user.uid,
+  //               name: fullname,
+  //               email: email,
+  //             })
+  //             .then(() => {
+  //               alert("Signup successful!");
 
-                document.querySelector(".buttons").setAttribute("style","visibility:visible")
-    document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
-              })
-              .catch((error) => {
-                alert("Sry we faced an error.");
-              });
+  //               document.querySelector(".buttons").setAttribute("style","visibility:visible")
+  //   document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
+  //             })
+  //             .catch((error) => {
+  //               alert("Sry we faced an error.");
+  //             });
            
-            signupform.reset();
-            signinpage.setAttribute("style","display:none")
-            document.querySelector(".buttons").setAttribute("style","visibility:visible")
-    document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
+  //           signupform.reset();
+  //           signinpage.setAttribute("style","display:none")
+  //           document.querySelector(".buttons").setAttribute("style","visibility:visible")
+  //   document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
           
-        })
-          .catch((error) => {
-            alert(error.message);
-          });
-      }
+  //       })
+  //         .catch((error) => {
+  //           alert(error.message);
+  //         });
+  //     }
     
 
-    signupform.addEventListener("submit", (event) => {
-      event.preventDefault();
-      let email = document.querySelector(".signup2").value;
-      let fullname = document.querySelector(".signup").value;
-      let password = document.querySelector(".signup1").value;
+  //   signupform.addEventListener("submit", (event) => {
+  //     event.preventDefault();
+  //     let email = document.querySelector(".signup2").value;
+  //     let fullname = document.querySelector(".signup").value;
+  //     let password = document.querySelector(".signup1").value;
      
-      signUp(email, password, fullname);
-    });
+  //     signUp(email, password, fullname);
+  //   });
   
-  })
+  // })
 
 //use RADAR API to locate coordinates of the entered location
+let signin=document.querySelector(".sign-in");
+signin.addEventListener("click",(event)=>{
+  window.location.href="sign_in_page.html";
+})
 const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83e"
     
     async function getCoordinates(address) {
