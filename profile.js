@@ -14,16 +14,31 @@ document.addEventListener("DOMContentLoaded", function () {
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database(); 
     const auth = firebase.auth();
-    
+    const giveref = db.ref("donate");
+    const takeref = db.ref("take");
     const user = firebase.auth().currentUser;
 firebase.auth().onAuthStateChanged(async (user) => {
   if (user) {
+    const useref=db.ref(`users/${user.uid}`)
+    const snapshot= await useref.once("value")
+    const userefdata=snapshot.val()
     document.querySelector("#email").value = user.email;
-    document.querySelector("#name").value = user.displayName;
+    document.querySelector("#name").value = userefdata.name;
     document.querySelector("#uid").value = user.uid;
+
+
+    const new_ul=document.createElement("ul");
+  new_ul.innerHTML=
+  `<h1><b>${userefdata.exchange}</b></h1>
+  <li>${userefdata.bookname}</li>
+  <li>${userefdata.location}</li>`
+  document.querySelector(".Activities").appendChild(new_ul);
   } else {
     console.log("Please log in to see your profile.");
   }
+  
+  
 });
+
 
 });

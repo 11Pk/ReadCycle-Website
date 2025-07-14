@@ -41,7 +41,9 @@ signin.addEventListener("click",()=>{
           .createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
             const user = userCredential.user;
-            
+          //   user.updateProfile({
+          //  displayName: fullname
+          //    }).then(() => {
             db.ref(`users/${user.uid}`)
               .set({
                 username: user.uid,
@@ -50,6 +52,7 @@ signin.addEventListener("click",()=>{
               })
               .then(() => {
                 alert("Signup successful!");
+
                 document.querySelector(".buttons").setAttribute("style","visibility:visible")
     document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
               })
@@ -61,7 +64,8 @@ signin.addEventListener("click",()=>{
             signinpage.setAttribute("style","display:none")
             document.querySelector(".buttons").setAttribute("style","visibility:visible")
     document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
-          })
+          
+        })
           .catch((error) => {
             alert(error.message);
           });
@@ -133,6 +137,15 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
          long:a.lon
 
       })
+      db.ref(`users/${user.uid}`)
+      .push({
+        exchange:"give",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon
+
+      })
       .then(() => {
         alert("We'll get back to you once we find a suitable recipent.");
         giveform.reset();
@@ -142,6 +155,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
       .catch((error) => {
         alert("Sorry we coudn't load your request at the moment.");
       });
+      
   })
 
   let takeform = document.querySelector(".takeform");
@@ -165,14 +179,25 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
         lat:a.lat,
         long:a.lon
       })
+      db.ref(`users/${user.uid}`)
+      .push({
+        exchange:"take",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon
+
+      })
       .then(() => {
         alert("We'll get back to you once we find a suitable donor.");
+        
         takeform.reset();
       })
 
       .catch((error) => {
         alert("Sorry we coudn't load your request at the moment.");
       });
+      
   });
 
 
