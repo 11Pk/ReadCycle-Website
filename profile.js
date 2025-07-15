@@ -26,14 +26,16 @@ firebase.auth().onAuthStateChanged(async (user) => {
     document.querySelector("#name").value = userefdata.name;
     document.querySelector("#uid").value = user.uid;
 
-
-    const new_ul=document.createElement("ul");
+   for(key in userefdata)
+   {
+    if(userefdata[key].exchange && userefdata[key].bookname && userefdata[key].location)
+    {const new_ul=document.createElement("ul");
   new_ul.innerHTML=
-  `<h1><b>${userefdata.exchange}</b></h1>
-  <li>${userefdata.bookname}</li>
-  <li>${userefdata.location}</li>`
-  document.querySelector(".Activities").appendChild(new_ul);
-  } else {
+  `<h1><b>${userefdata[key].exchange}</b></h1>
+  <li>${userefdata[key].bookname}</li>
+  <li>${userefdata[key].location}</li>`
+  document.querySelector(".Activities").appendChild(new_ul);}
+  }} else {
     console.log("Please log in to see your profile.");
   }
   

@@ -34,6 +34,7 @@ firebase.initializeApp(firebaseConfig);
               })
               .then(() => {
                 alert("Signup successful!");
+                window.location.href="hackathon.html";
 
               })
               .catch((error) => {

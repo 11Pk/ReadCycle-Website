@@ -23,66 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
-// let signin=document.querySelector(".sign-in")
-// signin.addEventListener("click",()=>{
-//     let signinpage=document.querySelector(".mainbox")
-//     signinpage.setAttribute("style","display:block")
-
-    
-//     document.querySelector(".buttons").setAttribute("style","visibility:hidden")
-//     document.querySelector(".homepageimagess").setAttribute("style","visibility:hidden")
-
-    
-  
-    
-  //   let signupform = signinpage.querySelector(".signinform");
-  //   function signUp(email, password, fullname) {
-  //       auth
-  //         .createUserWithEmailAndPassword(email, password)
-  //         .then((userCredential) => {
-  //           const user = userCredential.user;
-  //         //   user.updateProfile({
-  //         //  displayName: fullname
-  //         //    }).then(() => {
-  //           db.ref(`users/${user.uid}`)
-  //             .set({
-  //               username: user.uid,
-  //               name: fullname,
-  //               email: email,
-  //             })
-  //             .then(() => {
-  //               alert("Signup successful!");
-
-  //               document.querySelector(".buttons").setAttribute("style","visibility:visible")
-  //   document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
-  //             })
-  //             .catch((error) => {
-  //               alert("Sry we faced an error.");
-  //             });
-           
-  //           signupform.reset();
-  //           signinpage.setAttribute("style","display:none")
-  //           document.querySelector(".buttons").setAttribute("style","visibility:visible")
-  //   document.querySelector(".homepageimagess").setAttribute("style","visibility:visible")
-          
-  //       })
-  //         .catch((error) => {
-  //           alert(error.message);
-  //         });
-  //     }
-    
-
-  //   signupform.addEventListener("submit", (event) => {
-  //     event.preventDefault();
-  //     let email = document.querySelector(".signup2").value;
-  //     let fullname = document.querySelector(".signup").value;
-  //     let password = document.querySelector(".signup1").value;
-     
-  //     signUp(email, password, fullname);
-  //   });
-  
-  // })
-
 //use RADAR API to locate coordinates of the entered location
 let signin=document.querySelector(".sign-in");
 signin.addEventListener("click",(event)=>{
@@ -141,15 +81,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
          long:a.lon
 
       })
-      db.ref(`users/${user.uid}`)
-      .push({
-        exchange:"give",
-        bookname: bookname,
-        location: address.value,
-        lat: a.lat,
-        long: a.lon
-
-      })
+     
       .then(() => {
         alert("We'll get back to you once we find a suitable recipent.");
         giveform.reset();
@@ -159,6 +91,22 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
       .catch((error) => {
         alert("Sorry we coudn't load your request at the moment.");
       });
+
+       db.ref(`users/${user.uid}`)
+      .push({
+        exchange:"give",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon
+
+      })
+      .then(()=>{
+        alert("Please check your profile dashboard for further details.")
+      })
+      .catch((error)=>{
+         alert("Sorry we coudn't load your request at the moment.");
+      })
       
   })
 
@@ -183,15 +131,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
         lat:a.lat,
         long:a.lon
       })
-      db.ref(`users/${user.uid}`)
-      .push({
-        exchange:"take",
-        bookname: bookname,
-        location: address.value,
-        lat: a.lat,
-        long: a.lon
-
-      })
+     
       .then(() => {
         alert("We'll get back to you once we find a suitable donor.");
         
@@ -201,6 +141,22 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
       .catch((error) => {
         alert("Sorry we coudn't load your request at the moment.");
       });
+
+       db.ref(`users/${user.uid}`)
+      .push({
+        exchange:"take",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon
+
+      })
+      .then(()=>{
+        alert("Please check your profile dashboard for further details.")
+      })
+      .catch((error)=>{
+         alert("Sorry we coudn't load your request at the moment.");
+      })
       
   });
 
@@ -223,10 +179,11 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c; 
   }
+
   async function getUserName(uid) {
-    const snapshot = await db.ref(`users/${uid}`).once("value");
+    const snapshot = await db.ref(`users/${user.uid}`).once("value");
     const userData = snapshot.val();
-    return userData ? userData.name : "Unknown";
+    return userData ? userData : "Unknown";
 }
 function displayMatch(donor, receiver) {
   document.querySelector(".t").setAttribute("style","display:none;")
@@ -247,22 +204,30 @@ const givedata = givedataSnapshot.val();
       for (let key in givedata) {
         if (givedata[key].name === takedata.name) {
         
-        const donorName = await getUserName(givedata[key].username);
+        const donorDetails = await getUserName(givedata[key].username);
+        if(donorDetails!="Unknown")
+        {
+        const donorName=donorDetails.name;
+        const donorEmail=donorDetails.email;
                 resultsgive.push({
                     ...givedata[key],
                     name: donorName,
-                    uid: givedata[key].username
-                })
-                const receiverName = await getUserName(takedata.username);
-                resultstake.push({
+                    uid: givedata[key].username,
+                    email: donorEmail
+                });
+              }
+                const receiverDetails = await getUserName(takedata.username);
+                if(receiverDetails!="Unknown")
+               { resultstake.push({
                     ...takedata,
-                    name: receiverName,
-                    uid: takedata.username
+                    name: receiverDetails.name,
+                    uid: takedata.username,
+                    email: receiverDetails.email
                 })
-      
-        }
+              }
+        
       }
-      
+    }
       
       if(resultsgive.length>0)
       {
@@ -303,25 +268,31 @@ const givedata = givedataSnapshot.val();
     if (!givedata || !givedata.name) return;
     const takedataSnapshot= await takeref.once("value");
     
-      const takedata = snapshot.val();
+      const takedata = takedataSnapshot.val();
       if (!takedata) return;
       for (let key in takedata) {
         if (takedata[key].name === givedata.name) {
           resultsgive.push(givedata);
           resultstake.push(takedata[key]);
         }
-        const donorName = await getUserName(givedata[key].username);
+        const donorDetails = await getUserName(givedata[key].username);
+        if(donorDetails!="Unknown")
+        {
                 resultsgive.push({
                     ...givedata[key],
-                    name: donorName,
-                    uid: givedata[key].username
-                })
-                const receiverName = await getUserName(takedata.username);
+                    name: donorDetails.name,
+                    uid: givedata[key].username,
+                    email: donorDetails.email
+                })}
+                const receiverDetails = await getUserName(takedata.username);
+                if(receiverDetails!="Unknown")
+                {
                 resultstake.push({
                     ...takedata,
-                    name: receiverName,
-                    uid: takedata.username
-                })
+                    name: receiverDetails.name,
+                    uid: takedata.username,
+                    email: receiverDetails.email
+                })}
         
         if(resultsgive.length>0)
           {
