@@ -28,6 +28,12 @@ let signin=document.querySelector(".sign-in");
 signin.addEventListener("click",(event)=>{
   window.location.href="sign_in_page.html";
 })
+let profile=document.querySelector(".profile")
+{
+  profile.addEventListener("click",(event)=>{
+    window.location.href="profile.html";
+  })
+}
 const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83e"
     
     async function getCoordinates(address) {
@@ -72,13 +78,30 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
     let bookname = book.value;
     let address=giveform.querySelector("input.location")
     let a=await getCoordinates(address.value)
+    const activitykey=db.ref(`activities/${user.uid}`).push().key
+       db.ref(`activities/${user.uid}/${activitykey}`).set({
+        exchange:"give",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon,
+        status:"pending"
+
+      })
+      .then(()=>{
+        alert("Please check your profile dashboard for further details.")
+      })
+      .catch((error)=>{
+         alert("Sorry we coudn't load your request at the moment.");
+      })
     db.ref("donate")
       .push({
         name: bookname,
         username: user.uid,
         location:address.value,
          lat:a.lat,
-         long:a.lon
+         long:a.lon,
+        activitykey:activitykey
 
       })
      
@@ -92,21 +115,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
         alert("Sorry we coudn't load your request at the moment.");
       });
 
-       db.ref(`users/${user.uid}`)
-      .push({
-        exchange:"give",
-        bookname: bookname,
-        location: address.value,
-        lat: a.lat,
-        long: a.lon
-
-      })
-      .then(()=>{
-        alert("Please check your profile dashboard for further details.")
-      })
-      .catch((error)=>{
-         alert("Sorry we coudn't load your request at the moment.");
-      })
+       
       
   })
 
@@ -123,13 +132,30 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
     let bookname = book.value;
     let address=takeform.querySelector("input.location")
     let a= await getCoordinates(address.value)
+    const activitykey=db.ref(`activities/${user.uid}`).push().key
+       db.ref(`activities/${user.uid}/${activitykey}`).set({
+        exchange:"take",
+        bookname: bookname,
+        location: address.value,
+        lat: a.lat,
+        long: a.lon,
+        status:"pending"
+
+      })
+      .then(()=>{
+        alert("Please check your profile dashboard for further details.")
+      })
+      .catch((error)=>{
+         alert("Sorry we coudn't load your request at the moment.");
+      })
     db.ref("take")
       .push({
         name: bookname,
         username: user.uid,
         location:address.value,
         lat:a.lat,
-        long:a.lon
+        long:a.lon,
+        activitykey:activitykey
       })
      
       .then(() => {
@@ -142,21 +168,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
         alert("Sorry we coudn't load your request at the moment.");
       });
 
-       db.ref(`users/${user.uid}`)
-      .push({
-        exchange:"take",
-        bookname: bookname,
-        location: address.value,
-        lat: a.lat,
-        long: a.lon
-
-      })
-      .then(()=>{
-        alert("Please check your profile dashboard for further details.")
-      })
-      .catch((error)=>{
-         alert("Sorry we coudn't load your request at the moment.");
-      })
+       
       
   });
 
@@ -181,7 +193,7 @@ const RADAR_PUBLISHABLE_KEY="prj_test_pk_11004e5b8043662303c210d484931a33a9eed83
   }
 
   async function getUserName(uid) {
-    const snapshot = await db.ref(`users/${user.uid}`).once("value");
+    const snapshot = await db.ref(`users/${uid}`).once("value");
     const userData = snapshot.val();
     return userData ? userData : "Unknown";
 }
@@ -209,11 +221,13 @@ const givedata = givedataSnapshot.val();
         {
         const donorName=donorDetails.name;
         const donorEmail=donorDetails.email;
+        const donoractivityKey = givedata[key].activitykey;
                 resultsgive.push({
                     ...givedata[key],
                     name: donorName,
                     uid: givedata[key].username,
-                    email: donorEmail
+                    email: donorEmail,
+                    activitykey: donoractivityKey
                 });
               }
                 const receiverDetails = await getUserName(takedata.username);
@@ -222,11 +236,11 @@ const givedata = givedataSnapshot.val();
                     ...takedata,
                     name: receiverDetails.name,
                     uid: takedata.username,
-                    email: receiverDetails.email
+                    email: receiverDetails.email,
+                    activitykey: takedata.activitykey
                 })
               }
-        
-      }
+        }
     }
       
       if(resultsgive.length>0)
@@ -244,16 +258,29 @@ const givedata = givedataSnapshot.val();
       const matchedDonor = resultsgive[min_index];
             const matchedReceiver = resultstake[0];
             displayMatch(matchedDonor, matchedReceiver);
-            db.ref(`notifications/${matchedDonor.uid}`).push({
-                message: `Your book "${takedata.name}" has been matched with ${matchedReceiver.name} at ${matchedReceiver.location}.`,
-                type: 'donation_match',
-                timestamp: Date.now()
+             db.ref(`activities/${matchedDonor.uid}/${matchedDonor.activitykey}`).update({
+                status: "matched",
+                matchedWith: matchedReceiver.name,
+                matchedLocation: matchedReceiver.location,
+                matchedemail: matchedReceiver.email
             });
-            db.ref(`notifications/${matchedReceiver.uid}`).push({
-                message: `You have been matched with ${matchedDonor.name} for "${takedata.name}" at ${matchedDonor.location}.`,
-                type: 'donation_match',
-                timestamp: Date.now()
+            db.ref(`activities/${matchedReceiver.uid}/${matchedReceiver.activitykey}`).update({
+                status: "matched",
+                matchedWith: matchedDonor.name,
+                matchedLocation: matchedDonor.location,
+                matchedemail: matchedDonor.email
             });
+
+            // db.ref(`notifications/${matchedDonor.uid}`).push({
+            //     message: `Your book "${takedata.name}" has been matched with ${matchedReceiver.name} at ${matchedReceiver.location}.`,
+            //     type: 'donation_match',
+            //     timestamp: Date.now()
+            // });
+            // db.ref(`notifications/${matchedReceiver.uid}`).push({
+            //     message: `You have been matched with ${matchedDonor.name} for "${takedata.name}" at ${matchedDonor.location}.`,
+            //     type: 'donation_match',
+            //     timestamp: Date.now()
+            // });
             giveref.child(matchedDonor.uid).remove();
             takeref.child(matchedReceiver.uid).remove();
     }
@@ -261,72 +288,79 @@ const givedata = givedataSnapshot.val();
     });
   
 
-  giveref.on("child_added", async (snapshot) => {
-    let resultsgive = [];
-   let resultstake = [];
-    const givedata = snapshot.val();
-    if (!givedata || !givedata.name) return;
-    const takedataSnapshot= await takeref.once("value");
+//   giveref.on("child_added", async (snapshot) => {
+//     let resultsgive = [];
+//    let resultstake = [];
+//     const givedata = snapshot.val();
+//     if (!givedata || !givedata.name) return;
+//     const takedataSnapshot= await takeref.once("value");
     
-      const takedata = takedataSnapshot.val();
-      if (!takedata) return;
-      for (let key in takedata) {
-        if (takedata[key].name === givedata.name) {
-          resultsgive.push(givedata);
-          resultstake.push(takedata[key]);
-        }
-        const donorDetails = await getUserName(givedata[key].username);
-        if(donorDetails!="Unknown")
-        {
-                resultsgive.push({
-                    ...givedata[key],
-                    name: donorDetails.name,
-                    uid: givedata[key].username,
-                    email: donorDetails.email
-                })}
-                const receiverDetails = await getUserName(takedata.username);
-                if(receiverDetails!="Unknown")
-                {
-                resultstake.push({
-                    ...takedata,
-                    name: receiverDetails.name,
-                    uid: takedata.username,
-                    email: receiverDetails.email
-                })}
+//       const takedata = takedataSnapshot.val();
+//       if (!takedata) return;
+//       for (let key in takedata) {
+//         if (takedata[key].name === givedata.name) {
+//           resultsgive.push(givedata);
+//           resultstake.push(takedata[key]);
         
-        if(resultsgive.length>0)
-          {
-          let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
-          let min_index=0
-          for (let i=1;i<resultsgive.length;i++)
-          {
-            if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)<min_dist)
-            {
-              min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)
-              min_index=i
-            }
-          }
-          const matchedDonor = resultsgive[0];
-            const matchedReceiver = resultstake[min_index];
-            displayMatch(matchedDonor, matchedReceiver);
-            db.ref(`notifications/${matchedDonor.uid}`).push({
-                message: `Your book "${givedata.name}" has been matched with ${matchedReceiver.name} at ${matchedReceiver.location}.`,
-                type: 'donation_match',
-                timestamp: Date.now()
-            });
-            db.ref(`notifications/${matchedReceiver.uid}`).push({
-                message: `You have been matched with ${matchedDonor.name} for "${givedata.name}" at ${matchedDonor.location}.`,
-                type: 'donation_match',
-                timestamp: Date.now()
-            });
+//         const donorDetails = await getUserName(givedata[key].username);
+//         if(donorDetails!="Unknown")
+//         {
+//                 resultsgive.push({
+//                     ...givedata[key],
+//                     name: donorDetails.name,
+//                     uid: givedata[key].username,
+//                     email: donorDetails.email,
+//                     activitykey: donorDetails.activitykey
+//                 })}
+//                 const receiverDetails = await getUserName(takedata.username);
+//                 if(receiverDetails!="Unknown")
+//                 {
+//                 resultstake.push({
+//                     ...takedata,
+//                     name: receiverDetails.name,
+//                     uid: takedata.username,
+//                     email: receiverDetails.email,
+//                     activitykey: receiverDetails.activitykey
+//                 })}}
+        
+//         if(resultsgive.length>0)
+//           {
+//           let min_dist=calculateDistance(resultsgive[0].lat,resultsgive[0].long,resultstake[0].lat,resultstake[0].long)
+//           let min_index=0
+//           for (let i=1;i<resultsgive.length;i++)
+//           {
+//             if(calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].lat,resultstake[i].long)<min_dist)
+//             {
+//               min_dist=calculateDistance(resultsgive[i].lat,resultsgive[i].long,resultstake[i].long,resultstake[i].lat)
+//               min_index=i
+//             }
+//           }
+//           const matchedDonor = resultsgive[0];
+//             const matchedReceiver = resultstake[min_index];
+//             displayMatch(matchedDonor, matchedReceiver);
+//             db.ref(`activities/${matchedDonor.activitykey}`).update({
+//                 status: "matched",
+//                 matchedWith: matchedReceiver.name,
+//                 matchedLocation: matchedReceiver.location,
+//                 matchedemail: matchedReceiver.email
+//             });
+//             db.ref(`activities/${matchedReceiver.activitykey}`).update({
+//                 status: "matched",
+//                 matchedWith: matchedDonor.name,
+//                 matchedLocation: matchedDonor.location,
+//                 matchedemail: matchedDonor.email
+//             });
+//             // db.ref(`notifications/${matchedReceiver.uid}`).push({
+//             //     message: `You have been matched with ${matchedDonor.name} for "${givedata.name}" at ${matchedDonor.location}.`,
+//             //     type: 'donation_match',
+//             //     timestamp: Date.now()
+//             // });
+//            giveref.child(matchedDonor.uid).remove();
+//             takeref.child(matchedReceiver.uid).remove();
+//     }
+//         }
+// });
 
-        }
-      }
-
-    }
-  );
-  
-  
 
 
 function listenForMessages(uid) {
@@ -338,9 +372,9 @@ function listenForMessages(uid) {
   // Listen for authentication state changes
   // and call listenForMessages when the user is signed in
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      listenForMessages(user.uid);
-    }
-  });
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       listenForMessages(user.uid);
+//     }
+//   });
 });
