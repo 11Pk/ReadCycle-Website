@@ -2,6 +2,8 @@
   # **ReadCycle:**
   
   **Readcycle** is a web app designed to make it easier for individuals to give away or find books that match their educational needs.Our goal is to build a sustainable community where books find new homes instead of being thrown away.This will help in reducing waste and promote the joy of reading.
+  ## **MainIdea**
+  The idea behind this web app is that something that can be used int the same state, need not be recycled instead be re-circulated.
 
   ## ***Features:***
   
